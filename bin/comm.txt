@@ -1,1 +1,0 @@
-g++ serv.cpp -o serv -lws2_32
