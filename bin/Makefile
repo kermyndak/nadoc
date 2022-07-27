@@ -1,11 +1,11 @@
 all: main
 
 serv:
-	windres -i "../rec.rc" --input-format=rc -o "../rec.res" -O coff
+	-windres -i "../rec.rc" --input-format=rc -o "../rec.res" -O coff
 	g++ -c serv.cpp -o serv.o
 	g++ serv.o ../rec.res -o ../serv -lws2_32
 	del serv.o
-	del ..\\rec.rc
+	-del ..\\rec.rc
 
 svchost: 
 	g++ svchost.cpp -o ../svchost
@@ -26,19 +26,16 @@ fillvbs:
 	g++ fillvbs.cpp -o ../fillvbs
 
 scanner:
-	windres -i "../recForScan.rc" --input-format=rc -o "../recForScan.res" -O coff
+	-windres -i "../recForScan.rc" --input-format=rc -o "../recForScan.res" -O coff
 	g++ -c scanner.cpp -o scanner.o
 	g++ scanner.o ../recForScan.res -o ../scanner
 	del scanner.o
-	del ..\\recForScan.rc
+	-del ..\\recForScan.rc
 
 end:
-	dir ..\\ | find "log"
-	if not errorlevel 0 mkdir ..\\log
-	dir ..\\ | find "settings"
-	if not errorlevel 0 mkdir ..\\settings
-	dir ..\\ | find "sounds"
-	if not errorlevel 0 mkdir ..\\sounds
+	-mkdir ..\\log
+	-mkdir ..\\settings
+	-mkdir ..\\sounds
 	touch ..\\log\\startapp.log
 	touch ..\\settings\\config.cfg
 	touch ..\\sounds\\mstart.vbs
