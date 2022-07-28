@@ -1,5 +1,0 @@
-Operation system: Windows OS
-Codec page: 866
-
-
-unattend.xml exist
