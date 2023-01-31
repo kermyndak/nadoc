@@ -1,6 +1,6 @@
 #ifndef _recource
 #define _recource
 
-MAINICON ICON "images/logos/andre.ico"
+MAINICON ICON "../images/logos/andre.ico"
 
 #endif

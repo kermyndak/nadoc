@@ -1,6 +1,6 @@
 #ifndef _rec
 #define _rec
 
-MAINICON ICON "images/logos/chick.ico"
+MAINICON ICON "../images/logos/chick.ico"
 
 #endif
