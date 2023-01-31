@@ -64,7 +64,7 @@ int main(){
 				Sleep(1000);
 				serv = getServHandle();
 				std::cout << "Start..." << std::endl;
-				file.open("log/startapp.log", std::ios::app);
+				file.open("../log/startapp.log", std::ios::app);
 				std::system("date /t > temp_log");
 				InFile1.open("temp_log");
 				getline(InFile1, tempS);
@@ -82,7 +82,7 @@ int main(){
 		else {
 			if (status){
 				status = false;
-				file.open("log/startapp.log", std::ios::app);
+				file.open("../log/startapp.log", std::ios::app);
 				std::system("date /t > temp_log");
 				InFile1.open("temp_log");
 				getline(InFile1, tempS);

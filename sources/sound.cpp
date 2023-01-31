@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
 	if (argc == 2){
 		char buf[256] = "fillvbs ";
 		strcat(buf, argv[1]);
-		strcat(buf, " sounds\\mstart.vbs");
+		strcat(buf, " ..\\sounds\\mstart.vbs");
 		system(buf);
 	}
 	chdir("sounds");

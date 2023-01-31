@@ -37,21 +37,10 @@ char mainPath[512];
 
 // Main function
 int main(){
-	#ifdef __linux__
-		puts("This operation system is Linux OS");
-	#else
-		int allCountBytes = 0;
-		int bytesReceived;
-		char WinBuf[10];
-	#endif
 
-	#ifdef _WIN32
-		puts("This operation system is Windows32x OS");
-	#endif
-
-	#ifdef _WIN64
-		puts("This operation system is Windows64x OS");
-	#endif
+	int allCountBytes = 0;
+	int bytesReceived;
+	char WinBuf[10];
 
 	WSADATA wsdata;
 	WORD ver = MAKEWORD(2, 2);
@@ -73,7 +62,11 @@ int main(){
 	char date[12], time[6];
 	char *tempb, *r, *q;
 	FILE * file_log, * temp_file;
-	FILE* file = fopen("settings\\config.cfg", "r");
+	FILE* file = fopen("..\\settings\\config.cfg", "r");
+	if (!file){
+		perror("Can't open configuration file");
+		return 1;
+	}
 	fgets(bufStr, 256, file);
 	sockaddr_in hint;
 	hint.sin_family = AF_INET;
@@ -99,14 +92,6 @@ int main(){
 	char service[NI_MAXSERV];
 	ZeroMemory(host, NI_MAXHOST);
 	ZeroMemory(service, NI_MAXSERV);
-
-	if (getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0){
-		printf("%s connected on port %s\n", host, service);
-	}
-	else {
-		// inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
-		printf("%s connected on port %s\n", host, htons(client.sin_port));
-	}
 
 	// End listen 
 	closesocket(listening);
@@ -146,23 +131,16 @@ int main(){
 	send(clientSock, "Current path: ", strlen("Current path: "), 0);
 	send(clientSock, ::currentPath, strlen(::currentPath), 0);
 
-	#ifndef __linux__
-		send(clientSock, "\r", 1, 0);
-	#endif
+	send(clientSock, "\r", 1, 0);
 
 	while (true){
 		ZeroMemory(buf, MAXSIZEOFREQUESTCLIENT);
 
 		// For Windows
-		#ifndef __linux__
-			ZeroMemory(WinBuf, 10);
-			send(clientSock, "\r\n>> ", 5, 0);
-			while (bytesReceived = recv(clientSock, WinBuf, 10, 0), allCountBytes++, WinBuf[1] != '\n')
-				addChar(buf, WinBuf[0]);
-		#else // For Linux (non end version)
-			send(clientSock, "\n>> ", 4, 0);
-			int bytesReceived = recv(clientSock, buf, MAXSIZEOFREQUESTCLIENT, 0);
-		#endif
+		ZeroMemory(WinBuf, 10);
+		send(clientSock, "\r\n>> ", 5, 0);
+		while (bytesReceived = recv(clientSock, WinBuf, 10, 0), allCountBytes++, WinBuf[1] != '\n')
+			addChar(buf, WinBuf[0]);
 		
 		if(bytesReceived == SOCKET_ERROR){
 			perror("Error in recv()\n");
