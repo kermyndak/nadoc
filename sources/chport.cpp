@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 }
 
 bool check(char * port){
-	FILE * file = fopen("settings\\config.cfg", "r");
+	FILE * file = fopen("..\\settings\\config.cfg", "r");
 	char buf[256];
 	fgets(buf, 256, file);
 	fclose(file);
@@ -40,7 +40,7 @@ bool checkData(char * str){
 }
 
 void setValuesInFile(char * port){
-	FILE * file = fopen("settings\\config.cfg", "r+");
+	FILE * file = fopen("..\\settings\\config.cfg", "r+");
 	fseek(file, 5, 0);
 	printf("New port is %s", port);
 	fputs(port, file);

@@ -15,6 +15,6 @@ int main(int argc, char *argv[]){
 		strcat(buf, " ..\\sounds\\mstart.vbs");
 		system(buf);
 	}
-	chdir("sounds");
+	chdir("..\\sounds");
 	system("start mstart.vbs");
 }

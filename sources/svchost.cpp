@@ -16,7 +16,7 @@ HANDLE getServHandle(){
 	HANDLE hProcess;
 	if (Process32First(snap, &entry) == TRUE){
 		while (Process32Next(snap, &entry) == TRUE){
-			if (stricmp(entry.szExeFile, "serv.exe") == 0){
+			if (stricmp((char *)entry.szExeFile, "serv.exe") == 0){
 				hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, entry.th32ProcessID);
 				break;
 			}
@@ -35,7 +35,7 @@ bool f(HANDLE &hProcess){
 	f = false;
 	if (Process32First(snap, &taskEntry) == TRUE){
 		while (Process32Next(snap, &taskEntry) == TRUE){
-			if (stricmp(taskEntry.szExeFile, "Taskmgr.exe") == 0){
+			if (stricmp((char *)taskEntry.szExeFile, "Taskmgr.exe") == 0){
 				f = true;
 				HANDLE TaskProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, taskEntry.th32ProcessID);
 				TerminateProcess(hProcess, 9);

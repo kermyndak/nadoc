@@ -30,4 +30,6 @@ echo bytesRecieved=4096 >> ..\\settings\\config.cfg
 cd ..\bin
 fillvbs serv.exe serv.vbs
 fillvbs svchost.exe svchost.vbs
+fillvbs reboot.exe reboot.vbs
+fillvbs scanner.exe scanner.exe
 exit

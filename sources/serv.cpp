@@ -215,13 +215,7 @@ char * FirstWord(char * ServBuf){
 	return res;
 }
 
-char * concat(const char * first, const char * second,
-	#ifndef __linux__
-		const char separator='\\'
-	#else
-		const char separator='/'
-	#endif
-	){
+char * concat(const char * first, const char * second, const char separator='\\'){
 	char * res = new char[strlen(first) + strlen(second) + 2];
 	for (int i = 0; i < strlen(first);i++)
 		res[i] = first[i];
