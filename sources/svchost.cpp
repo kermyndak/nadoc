@@ -60,7 +60,7 @@ int main(){
 	while (true){
 		if (!f(serv)){
 			if (!status){
-				system("start serv.vbs");
+				system("start /D ..\\ serv.vbs");
 				Sleep(1000);
 				serv = getServHandle();
 				std::cout << "Start..." << std::endl;
