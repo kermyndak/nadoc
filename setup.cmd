@@ -5,8 +5,8 @@ cd sources
 windres -i "../resources/rec.rc" --input-format=rc -o "../bin/rec.res" -O coff
 g++ -c serv.cpp -o serv.o
 g++ serv.o ../bin/rec.res -o ../bin/serv -lws2_32
-del serv.o
-del ../bin/rec.res
+del serv.o /Q
+del ../bin/rec.res /Q
 g++ svchost.cpp -o ../bin/svchost
 g++ chport.cpp -o ../bin/chport
 g++ reboot.cpp -o ../bin/reboot
@@ -16,8 +16,8 @@ g++ fillvbs.cpp -o ../bin/fillvbs
 windres -i "../resources/recForScan.rc" --input-format=rc -o "../bin/recForScan.res" -O coff
 g++ -c scanner.cpp -o scanner.o
 g++ scanner.o ../bin/recForScan.res -o ../bin/scanner
-del scanner.o
-del ../bin/recForScan.res
+del scanner.o /Q
+del ../bin/recForScan.res /Q
 mkdir ..\\log
 mkdir ..\\settings
 mkdir ..\\sounds
