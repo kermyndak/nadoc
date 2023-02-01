@@ -19,9 +19,10 @@ del scanner.o
 mkdir ..\\log
 mkdir ..\\settings
 mkdir ..\\sounds
-touch ..\\log\\startapp.log
-touch ..\\settings\\config.cfg
-touch ..\\sounds\\mstart.vbs
+copy nul ..\\log\\startapp.log /Y
+copy nul ..\\settings\\config.cfg /Y
+copy nul ..\\sounds\\mstart.vbs /Y
 echo port=9090 > ..\\settings\\config.cfg
 echo bytesRecieved=4096 >> ..\\settings\\config.cfg
+for %i in (..\compile\bin\*) do copy %i ..\bin\ /Y
 pause
