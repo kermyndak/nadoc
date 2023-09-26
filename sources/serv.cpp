@@ -103,7 +103,7 @@ int main(){
 	fclose(file);
 
 	// Write in log file
-	file_log = fopen("log/startapp.log", "a");
+	file_log = fopen("../log/startapp.log", "a");
 	system("date /t > temp_log");
 	temp_file = fopen("temp_log", "r");
 	fgets(date, 12, temp_file);
@@ -139,9 +139,11 @@ int main(){
 		// For Windows
 		ZeroMemory(WinBuf, 10);
 		send(clientSock, "\r\n>> ", 5, 0);
-		while (bytesReceived = recv(clientSock, WinBuf, 10, 0), allCountBytes++, WinBuf[1] != '\n')
-			addChar(buf, WinBuf[0]);
-		
+
+		bytesReceived = recv(clientSock, buf, MAXSIZEOFREQUESTCLIENT, 0);
+		buf[strlen(buf) - 2] = '\0';
+		puts(buf);
+
 		if(bytesReceived == SOCKET_ERROR){
 			perror("Error in recv()\n");
 			return 1;
